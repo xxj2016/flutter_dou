@@ -17,16 +17,16 @@ class Home extends StatelessWidget {
         height: 217 * rpx, // 120px
         width: screenWidth,
         child: Container(
-          decoration: BoxDecoration(color: Colors.pinkAccent),
+          // decoration: BoxDecoration(color: Colors.pinkAccent),
           child: TopTab(),
         ),
       ),
       Positioned(
         bottom: 0,
         width: 0.70 * screenWidth,
-        height: 271 * rpx, // 150px
+        height: 251 * rpx, // 150px
         child: Container(
-          decoration: BoxDecoration(color: Colors.redAccent),
+          // decoration: BoxDecoration(color: Colors.redAccent),
           child: BtnContent(),
         ),
       ),
@@ -36,17 +36,17 @@ class Home extends StatelessWidget {
         width: 0.25 * screenWidth,
         height: 0.4 * screenHeight,
         child: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          // decoration: BoxDecoration(color: Colors.white),
           child: _getButtonList(),
         ),
       ),
       Positioned(
-        bottom: 0,
-        right: 0,
-        width: 0.25 * screenWidth,
-        height: 0.25 * screenWidth,
+        bottom: 20,
+        right: 10,
+        width: 0.2 * screenWidth,
+        height: 0.2 * screenWidth,
         child: Container(
-          decoration: BoxDecoration(color: Colors.purpleAccent),
+          // decoration: BoxDecoration(color: Colors.purpleAccent),
           child: RotateAlbum(),
         ),
       )

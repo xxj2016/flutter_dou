@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
       title: 'dou',
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(color: Colors.yellowAccent),
+          decoration: BoxDecoration(color: Colors.grey[500]),
           child: Home(),
         ),
         bottomNavigationBar: BottomAppBar(
           child: Container(
-            height: 100,
-            decoration: BoxDecoration(color: Colors.blueAccent),
+            height: 60,
+            decoration: BoxDecoration(color: Colors.black),
             child: BtmBar(),
           ),
         ),

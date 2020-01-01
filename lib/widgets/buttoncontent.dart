@@ -11,11 +11,17 @@ class BtnContent extends StatelessWidget {
         child: Column(
       children: <Widget>[
         ListTile(
-          title: Text('@人民日报'),
-          subtitle: Text("败标身脸选姐例出标登？双忙担秘队句中如。修古打专怀成承岁？调河城集底推出制天惊。"),
+          title: Text('@人民日报', style: TextStyle(color: Colors.white),),
+          subtitle: Text(
+            "败标身脸选姐例出标登？双忙担秘队句中如。修古打专怀成承岁？调河城集底推出制天惊。误升喜出首拍物备向思比存器术飞开七？医！",
+            style: TextStyle(color: Colors.white),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         Row(
           children: <Widget>[
+            SizedBox(width: 10,),
             Icon(Icons.music_note),
             // MarqueeWidget(
             //   text: 'Some sample text that takes some space.',
@@ -26,7 +32,7 @@ class BtnContent extends StatelessWidget {
             // //   style: TextStyle(fontWeight: FontWeight.bold),
             // //   scrollAxis: Axis.horizontal,
             // // )
-            Text('士校机塞外际阵十研数子'),
+            Text('士校机塞外际阵十研数子', style: TextStyle(color: Colors.white),),
           ],
         )
       ],

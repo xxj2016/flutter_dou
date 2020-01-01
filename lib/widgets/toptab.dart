@@ -22,7 +22,11 @@ class _TopTabState extends State<TopTab> with SingleTickerProviderStateMixin {
     double iconSize = 54 * rpx;
     return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Expanded(
-        child: Icon(Icons.search,size: iconSize,),
+        child: Icon(
+          Icons.search,
+          size: iconSize,
+          color: Colors.white,
+        ),
         flex: 2,
       ),
       Expanded(
@@ -32,8 +36,10 @@ class _TopTabState extends State<TopTab> with SingleTickerProviderStateMixin {
           padding: EdgeInsets.symmetric(horizontal: 100 * rpx), // 70px
           child: TabBar(
             indicatorColor: Colors.white,
-            labelStyle: TextStyle(color: Colors.white,fontSize: 45 * rpx), // 25px
-            unselectedLabelStyle: TextStyle(color: Colors.grey[700],fontSize: 36 * rpx), // 20px
+            labelStyle:
+                TextStyle(color: Colors.white, fontSize: 45 * rpx), // 25px
+            unselectedLabelStyle:
+                TextStyle(color: Colors.grey[700], fontSize: 36 * rpx), // 20px
             controller: _controller,
             indicatorPadding: EdgeInsets.symmetric(horizontal: 55),
             tabs: <Widget>[
@@ -44,14 +50,19 @@ class _TopTabState extends State<TopTab> with SingleTickerProviderStateMixin {
         ),
       ),
       Flexible(
-        flex: 2,
-        child: Row(
-          children: <Widget>[
-            SizedBox(width: 30 * rpx,), // 20px
-            Icon(Icons.live_tv,size: iconSize,),
-          ],
-        )
-      )
+          flex: 2,
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 30 * rpx,
+              ), // 20px
+              Icon(
+                Icons.live_tv,
+                size: iconSize,
+                color: Colors.white,
+              ),
+            ],
+          ))
     ]);
   }
 }

@@ -16,7 +16,7 @@ class _RotateAlbumState extends State<RotateAlbum>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
     animation = RotationTransition(
       turns: Tween(begin: 0.0, end: 1.0).animate(_controller)
         ..addStatusListener((status) {
@@ -36,6 +36,7 @@ class _RotateAlbumState extends State<RotateAlbum>
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(10),
       child: animation,
     );
   }
