@@ -34,14 +34,14 @@ class Home extends StatelessWidget {
         top: 0.32 * screenHeight,
         right: 0,
         width: 0.25 * screenWidth,
-        height: 0.4 * screenHeight,
+        height: 0.45 * screenHeight,
         child: Container(
           // decoration: BoxDecoration(color: Colors.white),
-          child: _getButtonList(),
+          child: _getButtonList(rpx),
         ),
       ),
       Positioned(
-        bottom: 20,
+        bottom: 5,
         right: 10,
         width: 0.2 * screenWidth,
         height: 0.2 * screenWidth,
@@ -54,50 +54,64 @@ class Home extends StatelessWidget {
   }
 }
 
-_getButtonList() {
+_getButtonList(double rpx) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: <Widget>[
       Container(
-        width: 60,
-        height: 70,
+          width: 108 * rpx,
+          height: 126 * rpx,
           child: Stack(
-        children: <Widget>[
-          Container(
-            width: 60,
-            height: 60,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'http://p1.music.126.net/sN3DmCp_EU0Zx14P40cR-w==/2765271743870112.jpg?param=180y180'),
-            ),
-          ),
-          Positioned(
-            bottom: 00,
-            left: 17.5,
-            child: Container(
-              width: 25,
-              height: 25,
-              child: Icon(
-                Icons.add,
-                size: 20,
-                color: Colors.white,
+            children: <Widget>[
+              Container(
+                width: 108 * rpx,
+                height: 126 * rpx,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'http://p1.music.126.net/sN3DmCp_EU0Zx14P40cR-w==/2765271743870112.jpg?param=180y180'),
+                ),
               ),
-              decoration: BoxDecoration(color: Colors.redAccent, borderRadius: BorderRadius.circular(25)),
-            ),
-          )
-        ],
-      )),
+              Positioned(
+                bottom: 00,
+                left: 17.5,
+                child: Container(
+                  width: 45 * rpx,
+                  height: 45 * rpx,
+                  child: Icon(
+                    Icons.add,
+                    size: 36 * rpx,
+                    color: Colors.white,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.redAccent,
+                      borderRadius: BorderRadius.circular(45 * rpx)),
+                ),
+              )
+            ],
+          )),
       IconText(
         txt: '999w',
-        icon: Icon(Icons.favorite, size: 50, color:  Colors.white,),
+        icon: Icon(
+          Icons.favorite,
+          size: 90 * rpx,
+          color: Colors.white,
+        ),
       ),
       IconText(
         txt: '999w',
-        icon: Icon(Icons.feedback, size: 50, color:  Colors.white,),
+        icon: Icon(
+          Icons.comment,
+          size: 90 * rpx,
+          color: Colors.white,
+        ),
       ),
       IconText(
         txt: '999w',
-        icon: Icon(Icons.replay, size: 50, color:  Colors.white,),
+        icon: Icon(
+          Icons.share,
+          size: 90 * rpx,
+          color: Colors.white,
+        ),
       ),
     ],
   );
@@ -115,7 +129,10 @@ class IconText extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           icon,
-          Text(txt,style:  TextStyle(color:  Colors.white,)),
+          Text(txt,
+              style: TextStyle(
+                color: Colors.white,
+              )),
         ],
       ),
     );

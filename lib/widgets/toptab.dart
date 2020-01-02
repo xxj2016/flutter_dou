@@ -37,11 +37,11 @@ class _TopTabState extends State<TopTab> with SingleTickerProviderStateMixin {
           child: TabBar(
             indicatorColor: Colors.white,
             labelStyle:
-                TextStyle(color: Colors.white, fontSize: 45 * rpx), // 25px
+                TextStyle(color: Colors.white, fontSize: 40 * rpx), // 25px
             unselectedLabelStyle:
                 TextStyle(color: Colors.grey[700], fontSize: 36 * rpx), // 20px
             controller: _controller,
-            indicatorPadding: EdgeInsets.symmetric(horizontal: 55),
+            indicatorPadding: EdgeInsets.symmetric(horizontal: 90 * rpx),
             tabs: <Widget>[
               Text('关注'),
               Text('推荐'),

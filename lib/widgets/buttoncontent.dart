@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dou/providers/RecommendProvider.dart';
 import 'package:marquee_flutter/marquee_flutter.dart';
+import 'package:provider/provider.dart';
 class BtnContent extends StatelessWidget {
   const BtnContent({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    MainInfo mainInfo = provider.mainInfo;
     double screenWidth = MediaQuery.of(context).size.width;
     double rpx = screenWidth / 750;
     return Container(
         child: Column(
       children: <Widget>[
         ListTile(
-          title: Text('@人民日报', style: TextStyle(color: Colors.white),),
+          title: Text('@${mainInfo.userName}', style: TextStyle(color: Colors.white),),
           subtitle: Text(
-            "败标身脸选姐例出标登？双忙担秘队句中如。修古打专怀成承岁？调河城集底推出制天惊。误升喜出首拍物备向思比存器术飞开七？医！",
+            "${mainInfo.content}",
             style: TextStyle(color: Colors.white),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
@@ -21,7 +25,7 @@ class BtnContent extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            SizedBox(width: 10,),
+            SizedBox(width: 18 * rpx,),
             Icon(Icons.music_note),
             // MarqueeWidget(
             //   text: 'Some sample text that takes some space.',
