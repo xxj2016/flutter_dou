@@ -4,7 +4,10 @@ import 'package:flutter_dou/providers/RecommendProvider.dart';
 import 'package:flutter_dou/widgets/bottombar.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(ChangeNotifierProvider(
+      create: (context) => RecommendProvider(),
+      child: MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -24,9 +27,6 @@ class RecommendPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // RecommendProvider provider = Provider.of<RecommendProvider>(context);
-    // MainInfo mainInfo = provider.mainInfo;
-    // var videoPath = mainInfo.videoPath;
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(

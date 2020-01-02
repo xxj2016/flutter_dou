@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dou/providers/RecommendProvider.dart';
+import 'package:flutter_dou/widgets/FavAnimation.dart';
 import 'package:flutter_dou/widgets/buttoncontent.dart';
 import 'package:flutter_dou/widgets/rotatealbum.dart';
 import 'package:flutter_dou/widgets/toptab.dart';
@@ -70,6 +71,49 @@ class _ButtonListState extends State<ButtonList> {
     double rpx = screenWidth / 750;
     RecommendProvider provider = Provider.of<RecommendProvider>(context);
     MainInfo mainInfo = provider.mainInfo;
+
+    List<IconAnimationStage> stages1 = List<IconAnimationStage>();
+    stages1.add(IconAnimationStage(
+        color: Colors.grey[100],
+        start: 1.0,
+        end: 0.0,
+        duration: Duration(milliseconds: 200)));
+    stages1.add(IconAnimationStage(
+        color: Colors.redAccent,
+        start: 0.0,
+        end: 1.3,
+        duration: Duration(milliseconds: 300)));
+    stages1.add(IconAnimationStage(
+        color: Colors.redAccent,
+        start: 1.3,
+        end: 1.0,
+        duration: Duration(milliseconds: 100)));
+
+    List<IconAnimationStage> stages2 = List<IconAnimationStage>();
+    stages2.add(IconAnimationStage(
+        color: Colors.grey[100],
+        start: 1.0,
+        end: 1.2,
+        duration: Duration(milliseconds: 200)));
+    stages2.add(IconAnimationStage(
+        color: Colors.grey[100],
+        start: 1.2,
+        end: 1.0,
+        duration: Duration(milliseconds: 200)));
+
+    List<IconAnimationStage> stages3 = List<IconAnimationStage>();
+    stages3.add(IconAnimationStage(
+        color: Colors.redAccent,
+        start: 1.0,
+        end: 1.2,
+        duration: Duration(milliseconds: 200)));
+    stages3.add(IconAnimationStage(
+        color: Colors.grey[100],
+        start: 1.2,
+        end: 1.0,
+        duration: Duration(milliseconds: 200)));
+
+    double iconSize = 90 * rpx;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
@@ -82,8 +126,7 @@ class _ButtonListState extends State<ButtonList> {
                   width: 108 * rpx,
                   height: 126 * rpx,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        '${mainInfo.avatarUrl}'),
+                    backgroundImage: NetworkImage('${mainInfo.avatarUrl}'),
                   ),
                 ),
                 Positioned(
@@ -105,27 +148,46 @@ class _ButtonListState extends State<ButtonList> {
               ],
             )),
         IconText(
-          txt: '${mainInfo.favCount}',
-          icon: Icon(
-            Icons.favorite,
-            size: 90 * rpx,
-            color: Colors.white,
-          ),
-        ),
+            txt: '${mainInfo.favCount}',
+            icon: !provider.mainInfo.ifFaved
+                ? AnimatedIconWidget(
+                    key: UniqueKey(),
+                    animationList: stages1,
+                    icon: Icons.favorite,
+                    size: iconSize,
+                    provider: provider,
+                    callback: () {
+                      provider.tapFav();
+                    },
+                  )
+                : AnimatedIconWidget(
+                    key: UniqueKey(),
+                    animationList: stages3,
+                    icon: Icons.favorite,
+                    size: iconSize,
+                    provider: provider,
+                    callback: () {
+                      provider.tapFav();
+                    },
+                  )),
         IconText(
           txt: '${mainInfo.replyCount}',
-          icon: Icon(
-            Icons.comment,
-            size: 90 * rpx,
-            color: Colors.white,
+          icon: AnimatedIconWidget(
+            animationList: stages2,
+            icon: Icons.comment,
+            size: iconSize,
+            callbackDelay: Duration(milliseconds: 200),
+            callback: () {
+              // showBottom(context, provider);
+            },
           ),
         ),
         IconText(
           txt: '${mainInfo.shareCount}',
-          icon: Icon(
-            Icons.share,
-            size: 90 * rpx,
-            color: Colors.white,
+          icon: AnimatedIconWidget(
+            animationList: stages2,
+            icon: Icons.reply,
+            size: iconSize,
           ),
         ),
       ],
@@ -135,7 +197,7 @@ class _ButtonListState extends State<ButtonList> {
 
 class IconText extends StatelessWidget {
   const IconText({Key key, this.icon, this.txt}) : super(key: key);
-  final Icon icon;
+  final AnimatedIconWidget icon;
   final String txt;
 
   @override
