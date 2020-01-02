@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dou/providers/RecommendProvider.dart';
 import 'package:flutter_dou/widgets/buttoncontent.dart';
 import 'package:flutter_dou/widgets/rotatealbum.dart';
 import 'package:flutter_dou/widgets/toptab.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
@@ -37,7 +39,7 @@ class Home extends StatelessWidget {
         height: 0.45 * screenHeight,
         child: Container(
           // decoration: BoxDecoration(color: Colors.white),
-          child: _getButtonList(rpx),
+          child: ButtonList(),
         ),
       ),
       Positioned(
@@ -54,67 +56,81 @@ class Home extends StatelessWidget {
   }
 }
 
-_getButtonList(double rpx) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: <Widget>[
-      Container(
-          width: 108 * rpx,
-          height: 126 * rpx,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: 108 * rpx,
-                height: 126 * rpx,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'http://p1.music.126.net/sN3DmCp_EU0Zx14P40cR-w==/2765271743870112.jpg?param=180y180'),
-                ),
-              ),
-              Positioned(
-                bottom: 00,
-                left: 17.5,
-                child: Container(
-                  width: 45 * rpx,
-                  height: 45 * rpx,
-                  child: Icon(
-                    Icons.add,
-                    size: 36 * rpx,
-                    color: Colors.white,
+class ButtonList extends StatefulWidget {
+  ButtonList({Key key}) : super(key: key);
+
+  @override
+  _ButtonListState createState() => _ButtonListState();
+}
+
+class _ButtonListState extends State<ButtonList> {
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double rpx = screenWidth / 750;
+    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    MainInfo mainInfo = provider.mainInfo;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Container(
+            width: 108 * rpx,
+            height: 126 * rpx,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: 108 * rpx,
+                  height: 126 * rpx,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        '${mainInfo.avatarUrl}'),
                   ),
-                  decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      borderRadius: BorderRadius.circular(45 * rpx)),
                 ),
-              )
-            ],
-          )),
-      IconText(
-        txt: '999w',
-        icon: Icon(
-          Icons.favorite,
-          size: 90 * rpx,
-          color: Colors.white,
+                Positioned(
+                  bottom: 00,
+                  left: 17.5,
+                  child: Container(
+                    width: 45 * rpx,
+                    height: 45 * rpx,
+                    child: Icon(
+                      Icons.add,
+                      size: 36 * rpx,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(45 * rpx)),
+                  ),
+                )
+              ],
+            )),
+        IconText(
+          txt: '${mainInfo.favCount}',
+          icon: Icon(
+            Icons.favorite,
+            size: 90 * rpx,
+            color: Colors.white,
+          ),
         ),
-      ),
-      IconText(
-        txt: '999w',
-        icon: Icon(
-          Icons.comment,
-          size: 90 * rpx,
-          color: Colors.white,
+        IconText(
+          txt: '${mainInfo.replyCount}',
+          icon: Icon(
+            Icons.comment,
+            size: 90 * rpx,
+            color: Colors.white,
+          ),
         ),
-      ),
-      IconText(
-        txt: '999w',
-        icon: Icon(
-          Icons.share,
-          size: 90 * rpx,
-          color: Colors.white,
+        IconText(
+          txt: '${mainInfo.shareCount}',
+          icon: Icon(
+            Icons.share,
+            size: 90 * rpx,
+            color: Colors.white,
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 class IconText extends StatelessWidget {

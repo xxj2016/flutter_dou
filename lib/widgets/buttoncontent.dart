@@ -26,7 +26,7 @@ class BtnContent extends StatelessWidget {
         Row(
           children: <Widget>[
             SizedBox(width: 18 * rpx,),
-            Icon(Icons.music_note),
+            Icon(Icons.music_note, color: Colors.white,),
             // MarqueeWidget(
             //   text: 'Some sample text that takes some space.',
             //   textStyle: TextStyle(fontSize: 28 * rpx, fontWeight: FontWeight.bold),
