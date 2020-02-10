@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dou/pages/RecommendPage/BottomSheet.dart';
 import 'package:flutter_dou/providers/RecommendProvider.dart';
 import 'package:flutter_dou/widgets/FavAnimation.dart';
 import 'package:flutter_dou/widgets/buttoncontent.dart';
@@ -14,6 +15,7 @@ class Home extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     double rpx = screenWidth / 750;
+
     return Stack(children: [
       Positioned(
         top: 0,
@@ -69,7 +71,7 @@ class _ButtonListState extends State<ButtonList> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double rpx = screenWidth / 750;
-    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    RecommendProvider provider = Provider.of<RecommendProvider>(context, listen: false);
     MainInfo mainInfo = provider.mainInfo;
 
     List<IconAnimationStage> stages1 = List<IconAnimationStage>();
@@ -178,7 +180,7 @@ class _ButtonListState extends State<ButtonList> {
             size: iconSize,
             callbackDelay: Duration(milliseconds: 200),
             callback: () {
-              // showBottom(context, provider);
+              showBottom(context, provider);
             },
           ),
         ),
@@ -215,4 +217,26 @@ class IconText extends StatelessWidget {
       ),
     );
   }
+}
+
+showBottom(context, provider) {
+  double height = MediaQuery.of(context).size.height;
+  provider.setScreenHeight(height);
+  provider.hideBottom();
+  showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusDirectional.circular(10.0),
+      ),
+      context: context,
+      builder: (_) {
+        return Container(
+          height: 600,
+          child: GestureDetector(
+           onTap: (){
+             FocusScope.of(context).requestFocus(FocusNode());
+           }, 
+           child: ReplyFullList(pCtx: context),
+          ),
+        );
+      });
 }

@@ -7,7 +7,7 @@ class BtnContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    RecommendProvider provider = Provider.of<RecommendProvider>(context, listen: false);
     MainInfo mainInfo = provider.mainInfo;
     double screenWidth = MediaQuery.of(context).size.width;
     double rpx = screenWidth / 750;

@@ -54,7 +54,7 @@ class MainTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    RecommendProvider provider = Provider.of<RecommendProvider>(context, listen: true);
     MainInfo mainInfo = provider.mainInfo;
     var videoPath = mainInfo.videoPath;
     return Stack(
