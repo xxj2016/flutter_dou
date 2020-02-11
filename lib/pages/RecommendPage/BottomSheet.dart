@@ -9,7 +9,8 @@ class ReplyFullList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var rpx = MediaQuery.of(context).size.width / 750;
-    RecommendProvider provider = Provider.of<RecommendProvider>(pCtx, listen: false);
+    RecommendProvider provider =
+        Provider.of<RecommendProvider>(pCtx, listen: false);
     Reply reply = provider.reply;
     List<Reply> replies = List<Reply>();
     replies.add(reply);
@@ -17,31 +18,30 @@ class ReplyFullList extends StatelessWidget {
     replies.add(reply);
     ScrollController controller = ScrollController();
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80*rpx),
-          child: AppBar(
-            leading: Container(),
-            elevation:0,
-            backgroundColor: Colors.grey[50],
-            actions: <Widget>[
-              
-              IconButton(
-                icon: Icon(
-                  Icons.close,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
-            ],
-            title: Text(
-              "10条评论",
-              style: TextStyle(color: Colors.grey[700],fontSize: 25*rpx),
-            ),
-            // elevation: 1,
-          )
-        ),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(80 * rpx),
+            child: AppBar(
+              centerTitle: true,
+              leading: Container(),
+              elevation: 0,
+              backgroundColor: Colors.grey[50],
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+              title: Text(
+                "10条评论",
+                style: TextStyle(color: Colors.grey[700], fontSize: 25 * rpx),
+              ),
+              // elevation: 1,
+            )),
         // bottomNavigationBar: SafeArea(
         //   child: BottomReplyBar(pCtx: pCtx,),
         // ),
@@ -50,7 +50,6 @@ class ReplyFullList extends StatelessWidget {
             child: Container(
               child: genReplyList(replies, controller),
             )));
-    
   }
 }
 
@@ -63,9 +62,6 @@ class ReplyList extends StatelessWidget {
   Widget build(BuildContext context) {
     var rpx = MediaQuery.of(context).size.width / 750;
     List<Reply> replies = List<Reply>();
-    replies.add(reply);
-    replies.add(reply);
-    replies.add(reply);
     replies.add(reply);
 
     return Container(
@@ -122,7 +118,7 @@ class AfterReply extends StatelessWidget {
     // RecommendProvider provider = Provider.of<RecommendProvider>(context);
     return Container(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Row(
             children: <Widget>[
@@ -132,9 +128,13 @@ class AfterReply extends StatelessWidget {
               Container(
                   width: 550 * rpx,
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         width: 70 * rpx,
+                        height: 70 * rpx,
+                        margin: EdgeInsets.only(top: 10.0 * rpx),
+                        padding: EdgeInsets.all(5.0),
                         child: CircleAvatar(
                           backgroundImage:
                               NetworkImage("${afterReply.replyMakerAvatar}"),
@@ -144,11 +144,22 @@ class AfterReply extends StatelessWidget {
                         width: 480 * rpx,
                         child: ListTile(
                           title: Text("${afterReply.replyMakerName}"),
-                          subtitle: Text(
-                            "${afterReply.replyContent}",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                          subtitle: RichText(
+                            text: TextSpan(
+                                text: "${afterReply.replyContent}",
+                                style: TextStyle(color: Colors.grey[600]),
+                                children: [
+                                  TextSpan(
+                                    text: "  ${afterReply.whenReplied}",
+                                    style: TextStyle(color: Colors.grey[500]),
+                                  )
+                                ]),
                           ),
+                          // subtitle: Text(
+                          //   "${afterReply.replyContent}",
+                          //   maxLines: 2,
+                          //   overflow: TextOverflow.ellipsis,
+                          // ),
                         ),
                       ),
                     ],
