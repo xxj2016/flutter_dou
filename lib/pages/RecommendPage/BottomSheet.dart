@@ -42,9 +42,11 @@ class ReplyFullList extends StatelessWidget {
               ),
               // elevation: 1,
             )),
-        // bottomNavigationBar: SafeArea(
-        //   child: BottomReplyBar(pCtx: pCtx,),
-        // ),
+        bottomNavigationBar: SafeArea(
+          child: BottomReplyBar(
+            pCtx: pCtx,
+          ),
+        ),
         body: SingleChildScrollView(
             controller: controller,
             child: Container(
@@ -205,4 +207,54 @@ genAfterReplyList(List<Reply> replies, ScrollController controller) {
           afterReply: replies[index],
         );
       });
+}
+
+class BottomReplyBar extends StatelessWidget {
+  const BottomReplyBar({Key key, this.pCtx}) : super(key: key);
+  final BuildContext pCtx;
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController _controller = TextEditingController();
+    double toBottom = MediaQuery.of(context).viewInsets.bottom;
+    double rpx = MediaQuery.of(context).size.width / 750;
+    return Container(
+      padding: EdgeInsets.only(bottom: toBottom),
+      decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.grey[200], width: 1))),
+      child: Row(children: <Widget>[
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.only(left: 30 * rpx),
+            child: TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                hintText: "留下你精彩的评论",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.email,
+            color: Colors.grey[500],
+            size: 50 * rpx,
+          ),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.face,
+            color: Colors.grey[500],
+            size: 50 * rpx,
+          ),
+          onPressed: () {},
+        ),
+        SizedBox(
+          width: 20 * rpx,
+        )
+      ]),
+    );
+  }
 }

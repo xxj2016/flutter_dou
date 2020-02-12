@@ -178,7 +178,7 @@ class _ButtonListState extends State<ButtonList> {
             animationList: stages2,
             icon: Icons.comment,
             size: iconSize,
-            callbackDelay: Duration(milliseconds: 200),
+            callbackDelay: Duration(milliseconds: 80),
             callback: () {
               showBottom(context, provider);
             },

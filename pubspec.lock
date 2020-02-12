@@ -81,6 +81,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
+  lpinyin:
+    dependency: "direct main"
+    description:
+      name: lpinyin
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.9"
   marquee_flutter:
     dependency: "direct main"
     description:
@@ -163,6 +170,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.3"
+  sticky_headers:
+    dependency: "direct main"
+    description:
+      name: sticky_headers
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.8+1"
   stream_channel:
     dependency: transitive
     description:
