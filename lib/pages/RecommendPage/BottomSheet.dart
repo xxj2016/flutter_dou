@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dou/pages/RecommendPage/FriendList.dart';
+import 'package:flutter_dou/providers/AtUserProvider.dart';
 import 'package:flutter_dou/providers/RecommendProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -241,7 +243,9 @@ class BottomReplyBar extends StatelessWidget {
             color: Colors.grey[500],
             size: 50 * rpx,
           ),
-          onPressed: () {},
+          onPressed: () {
+            showAtFriendPage(pCtx);
+          },
         ),
         IconButton(
           icon: Icon(
@@ -257,4 +261,19 @@ class BottomReplyBar extends StatelessWidget {
       ]),
     );
   }
+}
+
+showAtFriendPage(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) {
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => AtUserProvider(),
+            )
+          ],
+          child: AtFriendPage(),
+        );
+      },
+      fullscreenDialog: true));
 }

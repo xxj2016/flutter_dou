@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:collection/collection.dart';
 
-
 class AtUserProvider with ChangeNotifier {
   int curTop = 0;
+  // double appHeight=80;
 
   double appBtmHeight = 40;
   bool ifStick = true;
@@ -21,12 +21,12 @@ class AtUserProvider with ChangeNotifier {
   List<String> groupList = List<String>();
   AtUserProvider() {
     appHeight = appBar.preferredSize.height;
-    for(var item in data) {
+    // data.sort((a,b)=>a["name"].toString().compareTo(b["name"].toString()));
+    for (var item in data) {
       contacts.add(Contact(
-        avatarUrl: item["avatar_url"].toString(),
-        userName: item["name"].toString(),
-        desc: item["headline"].toString(),
-      ));
+          avatarUrl: item["avatar_url"].toString(),
+          userName: item["name"].toString(),
+          desc: item["headline"].toString()));
       String startText = item["name"].toString();
       if (startText == "") {
         startText = " ";
@@ -34,7 +34,8 @@ class AtUserProvider with ChangeNotifier {
         startText = startText[0];
       }
       if (RegExp("^[\u4e00-\u9fa5]").firstMatch(startText) != null) {
-        contacts.last.groupCode = PinyinHelper.getShortPinyin(startText)[0].toLowerCase();
+        contacts.last.groupCode =
+            PinyinHelper.getShortPinyin(startText)[0].toLowerCase();
       } else if (RegExp("^[a-zA-Z]").firstMatch(startText) != null) {
         contacts.last.groupCode = startText.toLowerCase();
       } else {
@@ -44,10 +45,18 @@ class AtUserProvider with ChangeNotifier {
       dataMap.add(Contact.toMap(contacts.last));
     }
     groupList = groupList.toSet().toList();
-    groupList.sort((a,b) => a.toString().compareTo(b.toString()));
-    dataMap.sort((a,b)=>a["groupCode"].toString().compareTo(b["groupCode"].toString()));
+    groupList.sort((a, b) => a.toString().compareTo(b.toString()));
+    dataMap.sort((a, b) =>
+        a["groupCode"].toString().compareTo(b["groupCode"].toString()));
+    result = groupBy(dataMap, (o) => o["groupCode"]);
+    // print(result);
     print('done');
   }
+
+  // setAppHeight(height){
+  //   appHeight=height;
+  //   // notifyListeners();
+  // }
 
   setIfStick(stick) {
     ifStick = stick;
@@ -70,7 +79,7 @@ class Contact {
       "avatarUrl": item.avatarUrl,
       "userName": item.userName,
       "desc": item.desc,
-      "groupCode": item.groupCode,
+      "groupCode": item.groupCode
     };
   }
 

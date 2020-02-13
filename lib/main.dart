@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dou/pages/home.dart';
 import 'package:flutter_dou/providers/RecommendProvider.dart';
-import 'package:flutter_dou/widgets/bottombar.dart';
+import 'package:flutter_dou/widgets/BottomBar.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(ChangeNotifierProvider(
@@ -17,14 +17,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'dou',
       theme: ThemeData(primaryColor: Color(0xff121319)),
-      home: RecommendPage(),
+      home: RecommendPage(
+        selIndex: 0,
+      ),
     );
   }
 }
 
 class RecommendPage extends StatelessWidget {
-  const RecommendPage({Key key}) : super(key: key);
-
+  const RecommendPage({Key key, @required this.selIndex}) : super(key: key);
+  final int selIndex;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -38,14 +40,37 @@ class RecommendPage extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.black),
             child: MainTabView(),
           ),
-          bottomNavigationBar: BottomAppBar(
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(color: Colors.black),
-              child: BtmBar(),
-            ),
+          bottomNavigationBar: BottomSafeBar(
+            selIndex: selIndex,
           ),
         ));
+  }
+}
+
+class BottomSafeBar extends StatelessWidget {
+  const BottomSafeBar({Key key, @required this.selIndex}) : super(key: key);
+  final int selIndex;
+  @override
+  Widget build(BuildContext context) {
+    // RecommendProvider provider = Provider.of<RecommendProvider>(context);
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+      ),
+      child: SafeArea(
+        child: BottomAppBar(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black
+            ),
+            height: 60,
+            child: BtmBar(
+              selectIndex: selIndex,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
