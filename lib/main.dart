@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'dou',
+      title: '防抖',
       theme: ThemeData(primaryColor: Color(0xff121319)),
       home: RecommendPage(
         selIndex: 0,

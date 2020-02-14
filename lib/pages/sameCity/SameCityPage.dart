@@ -8,6 +8,7 @@ class SameCityMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double rpx = MediaQuery.of(context).size.width / 750;
+    ScrollController controller = ScrollController();
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
@@ -55,6 +56,27 @@ class SameCityMain extends StatelessWidget {
               ],
             ),
           ),
+          Expanded(
+            child: SingleChildScrollView(
+              controller: controller,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10 * rpx),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
